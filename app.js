@@ -190,7 +190,11 @@
     if (!$("#screen") || S.screenMarket !== m) return;
     const d = r.data;
     const sc = (s) => s >= 4 ? "" : s >= 2 ? "mid" : "low";
-    el.innerHTML = fallbackNote(r) + `
+    const best = d.picks.length ? d.picks[0].score : 0;
+    const downCount = d.picks.filter((p) => p.changePct < 0).length;
+    const weakNote = best < 3 ? `<div class="alert" style="margin-bottom:12px">📉 <b>今天市場整體偏弱</b>：掃描的 ${d.scanned} 檔裡，沒有任何一檔技術面分數達到 3 分以上（前 ${d.picks.length} 名中有 ${downCount} 檔今天下跌）。
+      這種時候<b>「先觀望、不急著買」也是一種策略</b>。下面依分數列出「相對沒那麼弱」的股票，只供觀察參考。</div>` : "";
+    el.innerHTML = fallbackNote(r) + weakNote + `
       <p class="muted small" style="margin:0 0 10px">掃描範圍：${esc(d.universeNote)}（共 ${d.scanned} 檔）。依「站上均線、黃金交叉、帶量上漲、RSI 健康」等條件加分，「過熱」扣分。<b>分數高只代表技術面條件好，不代表一定會漲。</b></p>
       <div class="grid g3">${d.picks.map((p) => `
         <div class="card pick">
