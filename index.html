@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>股市小幫手｜AI 白話選股與圖表分析</title>
+  <meta name="description" content="台股、美股每日篩選、技術指標圖表、白話解說、AI 問答、自選股提醒" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="logo">📈</span><span>股市小幫手</span></a>
+    <nav class="nav" id="nav">
+      <a href="#home" data-page="home">🏠 <span>首頁</span></a>
+      <a href="#stock" data-page="stock">📊 <span>個股分析</span></a>
+      <a href="#watch" data-page="watch">⭐ <span>我的自選</span></a>
+      <a href="#news" data-page="news">📰 <span>新聞熱議</span></a>
+      <a href="#ai" data-page="ai">🤖 <span>AI 小幫手</span></a>
+      <a href="#about" data-page="about">ℹ️ <span>關於</span></a>
+    </nav>
+    <div class="user" id="userBox"></div>
+  </header>
+
+  <div id="demoBar" class="demo-bar" hidden></div>
+  <main id="app" class="container"></main>
+
+  <footer class="footer">
+    本網站為課程作業，數據僅供學習參考，<b>不構成任何投資建議</b>。投資有風險，請自行判斷。
+    資料來源：臺灣證券交易所、櫃買中心、Yahoo Finance、FinMind、Finnhub、Google 新聞、PTT。
+  </footer>
+
+  <!-- 登入視窗 -->
+  <div id="login" class="modal" hidden>
+    <div class="modal-card login-card">
+      <div class="login-hero">📈</div>
+      <h2>歡迎來到股市小幫手</h2>
+      <p class="muted">每天幫你篩股票、看圖表、用白話解釋給你聽</p>
+      <button class="btn primary big" id="guestBtn">👀 訪客進入（免註冊，一鍵使用）</button>
+      <div class="divider"><span>或使用帳號（可長期保存自選股）</span></div>
+      <div class="seg" id="authTabs">
+        <button class="active" data-t="in">登入</button>
+        <button data-t="up">註冊</button>
+      </div>
+      <form id="authForm" class="form">
+        <input type="email" id="email" placeholder="Email" autocomplete="email" required />
+        <input type="password" id="pw" placeholder="密碼（至少 6 個字元）" autocomplete="current-password" minlength="6" required />
+        <button class="btn" type="submit" id="authSubmit">登入</button>
+      </form>
+      <p class="err" id="authErr"></p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="chart.js"></script>
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
